@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>电影展示</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/wap.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+</head>
+
+<body>
+    <div class="top" ng-controller="mainController">
+        <div class="header">
+            <a href="#/home_page"><img src="assets/img/logo.png" alt=""></a>
+            <div class="search">
+                <input ng-model="q" class="my-input" type="text" placeholder="电影搜索">
+                <button ng-click="search(q)">搜索</button>
+            </div>
+        </div>
+        <nav class="nav" ng-controller="activeController">
+            <ul>
+                <!--li中添加 active 类样式，显示焦点状态。-->
+                <li ng-class="selectedNum === 1?'active':''"><a ui-sref="home_page">首页</a></li>
+                <li ng-class="selectedNum === 2?'active':''"><a ui-sref="in_theaters({movieType:'in_theaters',q:''})">正在热映</a></li>
+                <li ng-class="selectedNum === 3?'active':''"><a ui-sref="in_theaters({movieType:'coming_soon',q:''})">即将上映</a></li>
+                <li ng-class="selectedNum === 4?'active':''"><a ui-sref="in_theaters({movieType:'top250',q:''})">Top250</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <ui-view></ui-view>
+
+        <!--其他-->
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>版权所有&copy; 献给真正热爱技术的人(允许侵权)</p>
+        </div>
+    </footer>
+    <!-- 引入库 -->
+    <script type="text/javascript" src="./node_modules/angular/angular.js"></script>
+
+    <script type="text/javascript" src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <script src="./assets/js/prefixfree.min.js"></script>
+
+
+    <!-- jsonp服务 -->
+    <script src="./service/jsonpService.js"></script>
+
+    <!-- 自己的模块 -->
+    <script src="./app.js"></script>
+    <script src="./controllers/movieController.js"></script>
+
+</body>
+
+</html>
